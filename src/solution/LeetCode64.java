@@ -10,21 +10,28 @@ public class LeetCode64 {
 	public int minPathSum(int[][] grid) {
 		int n = grid.length;
 		int m = grid[0].length;
-		return getMinimum(grid, 0, 0, n - 1, m - 1);
+		int[][] minPath = new int[n][m];
+		minPath[0][0] = grid[0][0];
+
+		return minPath(grid, minPath, m - 1, n - 1);
 	}
 
-	private int getMinimum(int[][] grid, int a, int b, int m, int n) {
-		if (a == m && b == n) {
-			return grid[a][b];
+	private int minPath(int[][] grid, int[][] minPath, int x, int y) {
+		if (x < 0 || y < 0) {
+			return -1;
 		}
-		if (a == m) {
-			return grid[a][b] + getMinimum(grid, a, b + 1, m, n);
+		if (minPath[y][x] != 0) {
+			return minPath[y][x];
 		}
-		if (b == n) {
-			return grid[a][b] + getMinimum(grid, a + 1, b, m, n);
+		int aPath = minPath(grid, minPath, x, y - 1);
+		int bPath = minPath(grid, minPath, x - 1, y);
+		if (aPath == -1) {
+			aPath = bPath + 1;
 		}
-		int aResult = getMinimum(grid, a + 1, b, m, n);
-		int bResult = getMinimum(grid, a, b + 1, m, n);
-		return grid[a][b] + (aResult > bResult ? bResult : aResult);
+		if (bPath == -1) {
+			bPath = aPath + 1;
+		}
+		minPath[y][x] = grid[y][x] + (aPath > bPath ? bPath : aPath);
+		return minPath[y][x];
 	}
 }
