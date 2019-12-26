@@ -1,5 +1,9 @@
 .settings/
 target/
 bin/
+src/out/
+src/.idea
+.idea/
+src/LeetCode.iml
 .classpath
 .project
