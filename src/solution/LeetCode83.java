@@ -1,11 +1,11 @@
 package solution;
 
-import model.ListNode61;
+import model.ListNode;
 
 public class LeetCode83 {
-	public ListNode61 deleteDuplicates(ListNode61 head) {
-		ListNode61 parent = head;
-		ListNode61 current = head;
+	public ListNode deleteDuplicates(ListNode head) {
+		ListNode parent = head;
+		ListNode current = head;
 		while (current != null) {
 			if (parent.val != current.val) {
 				parent.next = current;

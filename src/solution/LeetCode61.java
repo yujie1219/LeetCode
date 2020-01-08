@@ -1,13 +1,13 @@
 package solution;
 
-import model.ListNode61;
+import model.ListNode;
 
 public class LeetCode61 {
-	public ListNode61 rotateRight(ListNode61 head, int k) {
+	public ListNode rotateRight(ListNode head, int k) {
 		int length = 0;
 
-		ListNode61 current = head;
-		ListNode61 lastParent = null;
+		ListNode current = head;
+		ListNode lastParent = null;
 		while (current != null) {
 			length++;
 			lastParent = current;
@@ -18,8 +18,8 @@ public class LeetCode61 {
 			int realK = k % length;
 			if (realK != 0) {
 				int realKBack = length - realK;
-				ListNode61 parent = null;
-				ListNode61 newHead = head;
+				ListNode parent = null;
+				ListNode newHead = head;
 				while (realKBack > 0) {
 					parent = newHead;
 					newHead = newHead.next;
