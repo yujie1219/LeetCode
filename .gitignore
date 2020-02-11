@@ -4,6 +4,6 @@ bin/
 src/out/
 src/.idea
 .idea/
-src/LeetCode.iml
+*.iml
 .classpath
 .project

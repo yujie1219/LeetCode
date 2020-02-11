@@ -3,10 +3,10 @@ package solution;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.TreeNode100;
+import model.TreeNode;
 
 public class LeetCode100 {
-	public boolean isSameTree(TreeNode100 p, TreeNode100 q) {
+	public boolean isSameTree(TreeNode p, TreeNode q) {
 		List<Integer> pVal = new ArrayList<Integer>();
 		foreachTree(p, pVal);
 		List<Integer> qVal = new ArrayList<Integer>();
@@ -31,7 +31,7 @@ public class LeetCode100 {
 		return true;
 	}
 
-	private void foreachTree(TreeNode100 root, List<Integer> treeVal) {
+	private void foreachTree(TreeNode root, List<Integer> treeVal) {
 		if (root != null) {
 			treeVal.add(root.val);
 			foreachTree(root.left, treeVal);
