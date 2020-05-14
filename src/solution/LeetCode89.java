@@ -4,31 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeetCode89 {
-	public List<Integer> grayCode(int n) {
-		List<Integer> resuList = new ArrayList<Integer>();
-		if (n == 0) {
-			resuList.add(0);
-			return resuList;
-		}
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList<Integer>();
+        result.add(0);
 
-		int[] arr = new int[n];
-		changeToOne(arr, resuList);
+        int[] grayCode = new int[n];
+        parseGrayCode(grayCode, result, 0);
 
-		return resuList;
-	}
+        return result;
+    }
 
-	private void changeToOne(int[] arr, List<Integer> result) {
-		int latest = 0;
-		for (int i = 0; i < arr.length; i++) {
-			latest += Math.pow(2, i);
-		}
-		result.add(latest);
+    private void parseGrayCode(int[] grayCode, List<Integer> result, int startIndex) {
+        for (int i = startIndex; i < grayCode.length; i++) {
+            grayCode[i] = 1;
 
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] != 1) {
-				arr[i] = 1;
-				changeToOne(arr.clone(), result);
-			}
-		}
-	}
+            result.add(getValue(grayCode));
+            parseGrayCode(grayCode, result, i + 1);
+            grayCode[i] = 0;
+        }
+    }
+
+    private int getValue(int[] grayCode) {
+        int result = 0;
+
+        for (int i = 0; i < grayCode.length; i++) {
+            result += grayCode[i] * Math.pow(2, grayCode.length - 1 - i);
+        }
+
+        return result;
+    }
 }
