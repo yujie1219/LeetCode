@@ -2,7 +2,6 @@ package solution;
 
 import model.ListNode;
 import model.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;

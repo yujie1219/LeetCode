@@ -1,6 +1,6 @@
 package solution;
 
-import model.NodeTwo;
+import model.BinaryNodeWithNext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,16 +9,16 @@ import java.util.Map;
 
 public class LeetCode116 {
 
-    public NodeTwo connect(NodeTwo root) {
+    public BinaryNodeWithNext connect(BinaryNodeWithNext root) {
         if (root == null) {
             return root;
         }
 
-        Map<Integer, List<NodeTwo>> bFSMap = new HashMap<>();
+        Map<Integer, List<BinaryNodeWithNext>> bFSMap = new HashMap<>();
 
         bfs(root, 0, bFSMap);
 
-        for (List<NodeTwo> currentFloor : bFSMap.values()) {
+        for (List<BinaryNodeWithNext> currentFloor : bFSMap.values()) {
             for (int i = 0; i < currentFloor.size() - 1; i++) {
                 currentFloor.get(i).next = currentFloor.get(i + 1);
             }
@@ -28,12 +28,12 @@ public class LeetCode116 {
         return root;
     }
 
-    private void bfs(NodeTwo current, int level, Map<Integer, List<NodeTwo>> bFSMap) {
+    private void bfs(BinaryNodeWithNext current, int level, Map<Integer, List<BinaryNodeWithNext>> bFSMap) {
         if (!bFSMap.containsKey(level)) {
             bFSMap.put(level, new ArrayList<>());
         }
 
-        List<NodeTwo> currentFloor = bFSMap.get(level);
+        List<BinaryNodeWithNext> currentFloor = bFSMap.get(level);
         currentFloor.add(current);
 
         if (current.left != null && current.right != null) {

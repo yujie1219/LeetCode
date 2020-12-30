@@ -1,7 +1,6 @@
 package solution;
 
 import model.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class LeetCode102 {
         return results;
     }
 
-    private void bFS(TreeNode current,int level) {
+    private void bFS(TreeNode current, int level) {
         if (results.size() == level) {
             results.add(new ArrayList<>());
         }

@@ -1,6 +1,6 @@
 package solution;
 
-import model.NodeTwo;
+import model.BinaryNodeWithNext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class LeetCode117 {
 
-    private Map<Integer, List<NodeTwo>> levelSearch = new HashMap<>();
+    private Map<Integer, List<BinaryNodeWithNext>> levelSearch = new HashMap<>();
 
-    public NodeTwo connect(NodeTwo root) {
+    public BinaryNodeWithNext connect(BinaryNodeWithNext root) {
         if (root != null) {
             df(0, root);
             toNext();
@@ -20,12 +20,12 @@ public class LeetCode117 {
         return root;
     }
 
-    private void df(int level, NodeTwo current) {
+    private void df(int level, BinaryNodeWithNext current) {
         if (current == null) {
             return;
         }
 
-        List<NodeTwo> list = levelSearch.get(level);
+        List<BinaryNodeWithNext> list = levelSearch.get(level);
         if (list != null) {
             list.add(current);
         } else {
@@ -39,7 +39,7 @@ public class LeetCode117 {
     }
 
     private void toNext() {
-        for (List<NodeTwo> list : levelSearch.values()) {
+        for (List<BinaryNodeWithNext> list : levelSearch.values()) {
             for (int i = 0; i < list.size() - 1; i++) {
                 list.get(i).next = list.get(i + 1);
             }
