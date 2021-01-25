@@ -11,9 +11,12 @@ public class LeetCode1202 {
         char[] sArr = s.toCharArray();
         int startIndex = 0;
         int currentSmallest = currentSmallest(sArr, startIndex);
+        return "";
     }
 
-    
+    private int findChangePath(int currentIndex, int startIndex, Map<Integer, List<Integer>> relationShip, Map<Integer, List<Integer>> allPossiblePath) {
+        return 0;
+    }
 
     private int currentSmallest(char[] sArr, int startIndex) {
         int result = startIndex;
