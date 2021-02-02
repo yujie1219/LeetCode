@@ -1,6 +1,7 @@
 .settings/
 target/
 bin/
+out/
 src/out/
 src/.idea
 .idea/
