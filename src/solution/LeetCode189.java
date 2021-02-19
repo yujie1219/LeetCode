@@ -1,23 +1,23 @@
 package solution;
 
 public class LeetCode189 {
-    // 此解法错误，应该翻转两次数组
     public void rotate(int[] nums, int k) {
-        int currentIndex = nums.length - k;
-        int covered = 0;
-        while (currentIndex < nums.length) {
-            int needCovered = currentIndex - nums.length + k;
-            covered = nums[needCovered];
-            nums[needCovered] = nums[currentIndex];
+        int length = nums.length;
+        int mod = (k % length);
+        rotate(nums, 0, length - 1);
+        rotate(nums, 0, mod - 1);
+        rotate(nums, mod, length - 1);
+    }
 
-            while (needCovered + k <= currentIndex) {
-                needCovered += k;
-                int temp = nums[needCovered];
-                nums[needCovered] = covered;
-                covered = temp;
-            }
 
-            currentIndex++;
+    private void rotate(int[] nums, int i, int j) {
+        while (i < j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+
+            i++;
+            j--;
         }
     }
 }
