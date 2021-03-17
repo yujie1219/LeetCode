@@ -12,45 +12,46 @@ public class LeetCode131 {
         leetCode131.partition("aab");
     }
 
-    private Set<String> knownPalindrome = new HashSet<>();
-    private List<List<String>> results = new ArrayList<>();
+
+    List<List<String>> results = new ArrayList<>();
 
     public List<List<String>> partition(String s) {
         if (s == null) {
             return results;
         }
 
-        tryPartition(s, 0, 0, new ArrayList<>());
+        for (int i = 1; i <= s.length(); i++) {
+            String currentSuffix = s.substring(0, i);
+            if (isPalindrome(currentSuffix)) {
+                List<String> result = new ArrayList<>();
+                result.add(currentSuffix);
+                tryPartition(s.substring(i), result);
+            }
+        }
 
         return results;
     }
 
-    private void tryPartition(String s, int index, int length, List<String> result) {
-        if (index > s.length() || (length != 0 && index + length >= s.length())) {
-            return;
-        }
-
-        if (index == s.length()) {
+    private void tryPartition(String s, List<String> result) {
+        if (s.length() == 0) {
             results.add(new ArrayList<>(result));
             return;
         }
 
-        if (length == 0) {
-            String indexS = s.charAt(index) + "";
-            knownPalindrome.add(indexS);
-            result.add(indexS);
-            tryPartition(s, index + 1, length, result);
-            result.remove(indexS);
-            tryPartition(s, index, length + 1, result);
-        } else {
-            String currentS = s.substring(index, index + length + 1);
-            if (knownPalindrome.contains(currentS) || isPalindrome(currentS)) {
-                knownPalindrome.add(currentS);
-                result.add(currentS);
-                tryPartition(s, index + length + 1, 0, result);
-                result.remove(currentS);
+        if (s.length() == 1) {
+            result.add(s);
+            results.add(new ArrayList<>(result));
+            result.remove(result.size() - 1);
+            return;
+        }
+
+        for (int i = 1; i <= s.length(); i++) {
+            String currentSuffix = s.substring(0, i);
+            if (isPalindrome(currentSuffix)) {
+                result.add(currentSuffix);
+                tryPartition(s.substring(i), result);
+                result.remove(result.size() - 1);
             }
-            tryPartition(s, index, length + 1, result);
         }
     }
 
